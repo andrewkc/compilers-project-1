@@ -1,0 +1,3 @@
+/home/andrewkc/CLionProjects/compilers-project-1/cmake-build-release/CMakeFiles/compiler.dir
+/home/andrewkc/CLionProjects/compilers-project-1/cmake-build-release/CMakeFiles/edit_cache.dir
+/home/andrewkc/CLionProjects/compilers-project-1/cmake-build-release/CMakeFiles/rebuild_cache.dir

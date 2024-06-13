@@ -1,0 +1,12 @@
+var bool a, b, c, e;
+var int d;
+a = false;
+b = 4 < 5 and 5 < 4;
+e = true;
+c = a or e and false;
+d = ifexp(true,5,1);
+print(a);
+print(b);
+print(c);
+print(d);
+print(e)
