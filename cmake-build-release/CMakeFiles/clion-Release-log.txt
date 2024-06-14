@@ -1,4 +1,4 @@
-/snap/clion/277/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - Unix Makefiles" -S /home/andrewkc/CLionProjects/compilers-project-1 -B /home/andrewkc/CLionProjects/compilers-project-1/cmake-build-release
+/snap/clion/282/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - Unix Makefiles" -S /home/andrewkc/CLionProjects/compilers-project-1 -B /home/andrewkc/CLionProjects/compilers-project-1/cmake-build-release
 CMake Deprecation Warning:
   Support for "Extra Generators" like
 

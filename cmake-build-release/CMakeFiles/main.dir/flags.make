@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = 
 
-CXX_FLAGS = -O3 -std=gnu++23 -fdiagnostics-color=always
+CXX_FLAGS = -O3 -DNDEBUG -std=gnu++23 -fdiagnostics-color=always
 

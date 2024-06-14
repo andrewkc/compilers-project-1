@@ -48,10 +48,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/277/bin/cmake/linux/x64/bin/cmake
+CMAKE_COMMAND = /snap/clion/282/bin/cmake/linux/x64/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/277/bin/cmake/linux/x64/bin/cmake -E rm -f
+RM = /snap/clion/282/bin/cmake/linux/x64/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /home/andrewkc/CLionProjects/compilers-project-1/cmake-build-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "No interactive CMake dialog available..."
-	/snap/clion/277/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/snap/clion/282/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,7 +78,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	/snap/clion/277/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/snap/clion/282/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -117,185 +117,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named compiler
+# Target rules for targets named main
 
 # Build rule for target.
-compiler: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 compiler
-.PHONY : compiler
+main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main
+.PHONY : main
 
 # fast build rule for target.
-compiler/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/build
-.PHONY : compiler/fast
+main/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
+.PHONY : main/fast
 
-imp.o: imp.cpp.o
-.PHONY : imp.o
-
-# target to build an object file
-imp.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/imp.cpp.o
-.PHONY : imp.cpp.o
-
-imp.i: imp.cpp.i
-.PHONY : imp.i
-
-# target to preprocess a source file
-imp.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/imp.cpp.i
-.PHONY : imp.cpp.i
-
-imp.s: imp.cpp.s
-.PHONY : imp.s
-
-# target to generate assembly for a file
-imp.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/imp.cpp.s
-.PHONY : imp.cpp.s
-
-imp_interpreter.o: imp_interpreter.cpp.o
-.PHONY : imp_interpreter.o
+main.o: main.cpp.o
+.PHONY : main.o
 
 # target to build an object file
-imp_interpreter.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/imp_interpreter.cpp.o
-.PHONY : imp_interpreter.cpp.o
+main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.o
+.PHONY : main.cpp.o
 
-imp_interpreter.i: imp_interpreter.cpp.i
-.PHONY : imp_interpreter.i
-
-# target to preprocess a source file
-imp_interpreter.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/imp_interpreter.cpp.i
-.PHONY : imp_interpreter.cpp.i
-
-imp_interpreter.s: imp_interpreter.cpp.s
-.PHONY : imp_interpreter.s
-
-# target to generate assembly for a file
-imp_interpreter.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/imp_interpreter.cpp.s
-.PHONY : imp_interpreter.cpp.s
-
-imp_parser.o: imp_parser.cpp.o
-.PHONY : imp_parser.o
-
-# target to build an object file
-imp_parser.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/imp_parser.cpp.o
-.PHONY : imp_parser.cpp.o
-
-imp_parser.i: imp_parser.cpp.i
-.PHONY : imp_parser.i
+main.i: main.cpp.i
+.PHONY : main.i
 
 # target to preprocess a source file
-imp_parser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/imp_parser.cpp.i
-.PHONY : imp_parser.cpp.i
+main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.i
+.PHONY : main.cpp.i
 
-imp_parser.s: imp_parser.cpp.s
-.PHONY : imp_parser.s
-
-# target to generate assembly for a file
-imp_parser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/imp_parser.cpp.s
-.PHONY : imp_parser.cpp.s
-
-imp_printer.o: imp_printer.cpp.o
-.PHONY : imp_printer.o
-
-# target to build an object file
-imp_printer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/imp_printer.cpp.o
-.PHONY : imp_printer.cpp.o
-
-imp_printer.i: imp_printer.cpp.i
-.PHONY : imp_printer.i
-
-# target to preprocess a source file
-imp_printer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/imp_printer.cpp.i
-.PHONY : imp_printer.cpp.i
-
-imp_printer.s: imp_printer.cpp.s
-.PHONY : imp_printer.s
+main.s: main.cpp.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-imp_printer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/imp_printer.cpp.s
-.PHONY : imp_printer.cpp.s
-
-imp_test.o: imp_test.cpp.o
-.PHONY : imp_test.o
-
-# target to build an object file
-imp_test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/imp_test.cpp.o
-.PHONY : imp_test.cpp.o
-
-imp_test.i: imp_test.cpp.i
-.PHONY : imp_test.i
-
-# target to preprocess a source file
-imp_test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/imp_test.cpp.i
-.PHONY : imp_test.cpp.i
-
-imp_test.s: imp_test.cpp.s
-.PHONY : imp_test.s
-
-# target to generate assembly for a file
-imp_test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/imp_test.cpp.s
-.PHONY : imp_test.cpp.s
-
-imp_typechecker.o: imp_typechecker.cpp.o
-.PHONY : imp_typechecker.o
-
-# target to build an object file
-imp_typechecker.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/imp_typechecker.cpp.o
-.PHONY : imp_typechecker.cpp.o
-
-imp_typechecker.i: imp_typechecker.cpp.i
-.PHONY : imp_typechecker.i
-
-# target to preprocess a source file
-imp_typechecker.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/imp_typechecker.cpp.i
-.PHONY : imp_typechecker.cpp.i
-
-imp_typechecker.s: imp_typechecker.cpp.s
-.PHONY : imp_typechecker.s
-
-# target to generate assembly for a file
-imp_typechecker.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/imp_typechecker.cpp.s
-.PHONY : imp_typechecker.cpp.s
-
-imp_value.o: imp_value.cpp.o
-.PHONY : imp_value.o
-
-# target to build an object file
-imp_value.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/imp_value.cpp.o
-.PHONY : imp_value.cpp.o
-
-imp_value.i: imp_value.cpp.i
-.PHONY : imp_value.i
-
-# target to preprocess a source file
-imp_value.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/imp_value.cpp.i
-.PHONY : imp_value.cpp.i
-
-imp_value.s: imp_value.cpp.s
-.PHONY : imp_value.s
-
-# target to generate assembly for a file
-imp_value.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/imp_value.cpp.s
-.PHONY : imp_value.cpp.s
+main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -305,28 +161,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... compiler"
-	@echo "... imp.o"
-	@echo "... imp.i"
-	@echo "... imp.s"
-	@echo "... imp_interpreter.o"
-	@echo "... imp_interpreter.i"
-	@echo "... imp_interpreter.s"
-	@echo "... imp_parser.o"
-	@echo "... imp_parser.i"
-	@echo "... imp_parser.s"
-	@echo "... imp_printer.o"
-	@echo "... imp_printer.i"
-	@echo "... imp_printer.s"
-	@echo "... imp_test.o"
-	@echo "... imp_test.i"
-	@echo "... imp_test.s"
-	@echo "... imp_typechecker.o"
-	@echo "... imp_typechecker.i"
-	@echo "... imp_typechecker.s"
-	@echo "... imp_value.o"
-	@echo "... imp_value.i"
-	@echo "... imp_value.s"
+	@echo "... main"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 
