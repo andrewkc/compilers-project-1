@@ -1,0 +1,5 @@
+/home/andrewkc/Codes/compilers-project-1/CMakeFiles/imp.dir
+/home/andrewkc/Codes/compilers-project-1/CMakeFiles/compiler.dir
+/home/andrewkc/Codes/compilers-project-1/CMakeFiles/svm.dir
+/home/andrewkc/Codes/compilers-project-1/CMakeFiles/edit_cache.dir
+/home/andrewkc/Codes/compilers-project-1/CMakeFiles/rebuild_cache.dir
