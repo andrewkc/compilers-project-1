@@ -14,7 +14,7 @@
 
 class ImpCodeGenerator : public ImpGeneralVisitor {
 public:
-  void codegen(Program*, string outfname, int mem_size);
+  void codegen(Program*, string outfname);
   void visit(Program* p);
   void visit(Body* b);
   void visit(VarDecList* v);
@@ -37,12 +37,9 @@ private:
   string nolabel;
   int current_label;
   Environment<int> addresses;
-  int next_address, mem_locals;
-  int mem_size;
+  int next_adress;
   void codegen(string label, string instr);
   void codegen(string label, string instr, int arg);
   void codegen(string label, string instr, string jmplabel);
   string next_label();
-public:
-  ImpCodeGenerator();
 };

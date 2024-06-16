@@ -32,8 +32,8 @@ void ImpInterpreter::visit(VarDecList* decs) {
 void ImpInterpreter::visit(VarDec* vd) {
   list<string>::iterator it;
   ImpValue v;
-  ImpType tt = ImpValue::get_basic_type(vd->type);
-  if (tt == NOTYPE) {
+  ImpType::TType tt = ImpValue::get_basic_type(vd->type);
+  if (tt == ImpType::NOTYPE) {
     cout << "Invalid type: " << vd->type << endl;
     exit(0);
   }
@@ -58,12 +58,6 @@ void ImpInterpreter::visit(AssignStatement* s) {
     cout << "Variable " << s->id << " undefined" << endl;
     exit(0);
   }
-  ImpValue lhs = env.lookup(s->id);
-  if (lhs.type != v.type) {
-    cout << "Type Error in Assign: Variable types " << s->id;
-    cout << " and RHS do not match" << endl;
-    exit(0);
-  }
   env.update(s->id, v);
   return;
 }
@@ -76,7 +70,7 @@ void ImpInterpreter::visit(PrintStatement* s) {
 
 void ImpInterpreter::visit(IfStatement* s) {
   ImpValue v = s->cond->accept(this);
-  if (v.type != TBOOL) {
+  if (v.type != ImpType::TBOOL) {
     cout << "Type error in If: expected bool in conditional" << endl;
     exit(0);
   }	      
@@ -91,7 +85,7 @@ void ImpInterpreter::visit(IfStatement* s) {
 
 void ImpInterpreter::visit(WhileStatement* s) {
   ImpValue v = s->cond->accept(this);
-  if (v.type != TBOOL) {
+  if (v.type != ImpType::TBOOL) {
     cout << "Type error in While: expected bool in conditional" << endl;
     exit(0);
   }	        
@@ -112,28 +106,28 @@ ImpValue ImpInterpreter::visit(BinaryExp* e) {
   }
   int iv, iv1, iv2;
   bool bv, bv1, bv2;
-  ImpType type = NOTYPE;
+  ImpType::TType type = ImpType::NOTYPE;
   iv1 = v1.int_value;
   iv2 = v2.int_value;
   bv1 = v1.bool_value;
   bv2 = v2.bool_value;
   switch(e->op) {
-  case PLUS: iv = iv1+iv2; type = TINT; break;
-  case MINUS: iv = iv1-iv2; type = TINT; break;
-  case MULT: iv = iv1 * iv2; type = TINT; break;
-  case DIV: iv = iv1 / iv2; type = TINT; break;
+  case PLUS: iv = iv1+iv2; type = ImpType::TINT; break;
+  case MINUS: iv = iv1-iv2; type = ImpType::TINT; break;
+  case MULT: iv = iv1 * iv2; type = ImpType::TINT; break;
+  case DIV: iv = iv1 / iv2; type = ImpType::TINT; break;
   case EXP:
     iv = 1;
     while (iv2 > 0) { iv *= iv1; iv2--; }
-    type = TINT;
+    type = ImpType::TINT;
     break;
-  case LT: bv = (iv1 < iv2) ? 1 : 0; type = TBOOL; break;
-  case LTEQ: bv = (iv1 <= iv2) ? 1: 0; type = TBOOL; break;
-  case EQ: bv = (iv1 == iv2) ? 1 : 0; type = TBOOL; break;
-  case AND: bv = (bv1 && bv2) ? 1 : 0; type = TBOOL; break;
-  case OR: bv = (bv1 || bv2) ? 1 : 0; type = TBOOL; break;
+  case LT: bv = (iv1 < iv2) ? 1 : 0; type = ImpType::TBOOL; break;
+  case LTEQ: bv = (iv1 <= iv2) ? 1: 0; type = ImpType::TBOOL; break;
+  case EQ: bv = (iv1 == iv2) ? 1 : 0; type = ImpType::TBOOL; break;
+  case AND: bv = (bv1 && bv2) ? 1 : 0; type = ImpType::TBOOL; break;
+  case OR: bv = (bv1 || bv2) ? 1 : 0; type = ImpType::TBOOL; break;
   }
-  if (type == TINT) result.int_value = iv;
+  if (type == ImpType::TINT) result.int_value = iv;
   else result.bool_value = bv;
   result.type = type;
   return result;
@@ -141,7 +135,7 @@ ImpValue ImpInterpreter::visit(BinaryExp* e) {
 
 ImpValue ImpInterpreter::visit(NumberExp* e) {
   ImpValue v;
-  v.set_default_value(TINT);
+  v.set_default_value(ImpType::TINT);
   v.int_value = e->value;
   return v;
 }
@@ -161,7 +155,7 @@ ImpValue ImpInterpreter::visit(ParenthExp* ep) {
 
 ImpValue ImpInterpreter::visit(CondExp* e) {
   ImpValue v = e->cond->accept(this);
-  if (v.type != TBOOL) {
+  if (v.type != ImpType::TBOOL) {
     cout << "Type error in ifexp: expected bool in conditional" << endl;
     exit(0);
   }
@@ -173,7 +167,7 @@ ImpValue ImpInterpreter::visit(CondExp* e) {
 
 ImpValue ImpInterpreter::visit(BoolConstExp* e) {
   ImpValue v;
-  v.set_default_value(TBOOL);
+  v.set_default_value(ImpType::TBOOL);
   v.bool_value = e->value;
   return v;
 }

@@ -1,2 +1,21 @@
-alloc 10
+alloc 2
+push  3
+store 0
+push  5
+load 0
+lt
+jmpz L0
+load 0
+push  2
+mul
+store 1
+goto L1
+L0: skip
+load 0
+push  3
+mul
+store 1
+L1: skip
+load 1
+print
 halt

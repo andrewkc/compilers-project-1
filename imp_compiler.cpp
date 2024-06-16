@@ -29,7 +29,6 @@ int main(int argc, const char* argv[]) {
   ImpPrinter printer;
   ImpInterpreter interpreter;
   ImpTypeChecker checker;
-
   ImpCodeGenerator cg;
   
   printer.print(program);
@@ -43,7 +42,6 @@ int main(int argc, const char* argv[]) {
   string outfname = argv[1];
   outfname += ".svm";
   cout << endl << "Compiling to: " << outfname << endl;
-  cg.codegen(program, outfname);
-
+  cg.codegen(program, outfname, checker.mem_size); // with mem_size for alloc
   delete program;
 }

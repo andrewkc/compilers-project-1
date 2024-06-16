@@ -12,15 +12,8 @@ using namespace std;
 class ImpTypeChecker : public ImpTypeVisitor {
 public:
   ImpTypeChecker();
-  int mem_size;
 private:
   Environment<ImpType> env;
-  ImpType booltype;
-  ImpType inttype;
-  int sp, max_sp; 
-  int count_addrs_vars; //
-  void sp_incr(int n);
-  void sp_decr(int n);
 
 public:
   void typecheck(Program* p);

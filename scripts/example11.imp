@@ -1,0 +1,20 @@
+var int x, n;
+n = 10;
+x = 0;
+print(x);
+print(n);
+if x < n then 
+var int x, n;
+x = 1;
+n = 2; 
+print(x);
+print(n)
+else
+var int x, n, d, e, t;
+x = 3;
+n = 4;
+print(x);
+print(n)
+endif;
+print(x);
+print(n)

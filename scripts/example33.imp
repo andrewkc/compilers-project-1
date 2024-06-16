@@ -1,0 +1,10 @@
+var int x, n;
+n = 10;
+x = 0;
+if x < n then 
+var bool a, b, x;
+print(a)
+else
+var bool c, d;
+print(c)
+endif
