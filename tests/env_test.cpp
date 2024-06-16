@@ -24,8 +24,8 @@ int main(int argc, const char* argv[]) {
 
   ImpValue v;
   cout << v << endl;
-  ImpType tt = ImpValue::get_basic_type("int");
-  if (tt == TINT) cout << "int" << endl;
+  ImpType::TType tt = ImpValue::get_basic_type("int");
+  if (tt == ImpType::TINT) cout << "int" << endl;
 
   v.set_default_value(ImpValue::get_basic_type("int"));
   cout << v << endl;
@@ -35,7 +35,7 @@ int main(int argc, const char* argv[]) {
   cout << v << endl;
 
   ImpValue x;
-  x.set_default_value(TINT);
+  x.set_default_value(ImpType::TINT);
   x.int_value = 20;
   cout << x << endl;
 }
