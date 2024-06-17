@@ -262,7 +262,12 @@ public:
 * Tcheck
 ```
 tcheck(env, DoWhileStm(e, bd)) ifi tcheck(env, bd) &&
-                                   tcheck(env, e) = bool 
+                                   tcheck(env, e) = bool
+tcheck(env, bd(vdlist, slist)) ifi
+    forall s in slist: tcheck(env1, s), where env1 = process_decs(env, vdlist)
+    process_decs(env, vdlist) = env[id_1 -> T_1], ... ,[id_n -> T_n], where vdlist = (T_1, id_1), ... ,(T_n, id_n)
+
+tcheck(env, e) = Type 
 ```
 * Codegen
 ```
@@ -272,6 +277,10 @@ codegen(addr, DoWhileStm(e, bd) = LENTRY: skip
                                   jmpz LEND
                                   goto LENTRY
                                   LEND: skip
+codegen(add, bd(vdlist, Stm_1...Stm_n) = codegen(addr, Stm_1)
+                                         ...
+                                         codegen(addr, Stm_n)
+codegen(add, e) // base case
 ```
 ## 4. Run Program:
 ```
