@@ -15,19 +15,19 @@ Instruction::Instruction(string l, IType itype, string arg):label(l),type(itype)
 }
 
 SVM::SVM(list<Instruction*>& sl) {
-  instructions.reserve(sl.size());
+  instructions.reserve(sl.size()); //
   copy(begin(sl), end(sl), back_inserter(instructions));
   sp = pc = 0;
   sp = max_stack = 0;
   hp = MEM_SIZE;
   ep = hp-1;
   // resolver labels
-  for(int i=0; i < instructions.size(); i++) {
+  for(int i=0; i < instructions.size(); i++) {//
     string l = instructions[i]->label;
     if (l != "")
       labels[l] = i; 
   }
-  for(int i=0; i < instructions.size(); i++) {
+  for(int i=0; i < instructions.size(); i++) { //
     string jl = instructions[i]->jmplabel;  // works for pusha too
     if (jl != "") {
       std::unordered_map<std::string,int>::const_iterator it = labels.find(jl);
@@ -42,13 +42,14 @@ SVM::SVM(list<Instruction*>& sl) {
 
 void SVM::execute() {
   while (true) {   
-    if (pc >= instructions.size()) {
+    if (pc >= instructions.size()) {//
       cout << "Program counter ouf bounds...exiting" << endl;
       break;
-    }
+    } 
     // cout << "pc " << pc << endl;
     // print_stack();
-    if (!execute(instructions[pc])) break;
+    if (pc > 0 and !execute(instructions[pc])) break; //
+    if (pc == 0) break;
   }
 }
 

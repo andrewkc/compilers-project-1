@@ -1,0 +1,6 @@
+alloc 1
+push  5
+store 0
+load 0
+print
+halt

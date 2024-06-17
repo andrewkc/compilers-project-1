@@ -1,0 +1,8 @@
+var int x;
+x = 0;
+do 
+var int y;
+x = x+1;
+y = 4;
+print(x)
+while x < 5

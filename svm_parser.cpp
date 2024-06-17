@@ -326,7 +326,7 @@ Instruction* Parser::parseInstruction() {
   if (tipo == 0) {
     instr = new Instruction(label, Token::tokenToIType(ttype));
   } else if (tipo == 1) {
-    instr = new Instruction(label, Token::tokenToIType(ttype), n);
+    instr = new Instruction(label, Token::tokenToIType(ttype), n+1);//
   } else { 
     instr = new Instruction(label, Token::tokenToIType(ttype), jmplabel);
   }

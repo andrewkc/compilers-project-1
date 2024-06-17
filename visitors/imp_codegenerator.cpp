@@ -115,6 +115,18 @@ void ImpCodeGenerator::visit(WhileStatement* s) {
   codegen(l2,"skip");
 }
 
+void ImpCodeGenerator::visit(DoWhileStatement* s) {
+  string l1 = next_label();
+  string l2 = next_label();
+
+  codegen(l1,"skip");
+  s->body->accept(this);
+  s->cond->accept(this);
+  codegen(nolabel,"jmpz",l2);
+  codegen(nolabel,"goto",l1);
+  codegen(l2,"skip");
+}
+
 int ImpCodeGenerator::visit(BinaryExp* e) {
   e->left->accept(this);
   e->right->accept(this);

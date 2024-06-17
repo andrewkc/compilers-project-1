@@ -56,7 +56,7 @@ void ImpTypeChecker::visit(VarDecList* decs) {
 void ImpTypeChecker::visit(VarDec* vd) {
   ImpType type;
   type.set_basic_type(vd->type);
-  if (type.ttype==ImpType::NOTYPE) {
+  if (type.ttype == ImpType::NOTYPE) {
     cout << "Invalid type: " << vd->type << endl;
     exit(0);
   }
@@ -99,7 +99,10 @@ void ImpTypeChecker::visit(PrintStatement* s) {
 }
 
 void ImpTypeChecker::visit(IfStatement* s) {
-  s->cond->accept(this);
+  if (!s->cond->accept(this).match(booltype)) {
+    cout << "Conditional in IfStm must be: " << booltype << endl;
+    exit(0);
+  }
   sp_decr(1);
   s->tbody->accept(this);
   if (s->fbody != NULL)
@@ -108,17 +111,30 @@ void ImpTypeChecker::visit(IfStatement* s) {
 }
 
 void ImpTypeChecker::visit(WhileStatement* s) {
-  s->cond->accept(this);
+  if (!s->cond->accept(this).match(booltype)) {
+    cout << "Conditional in WhileStm must be: " << booltype << endl;
+    exit(0);
+  }
   sp_decr(1);
   s->body->accept(this);
- return;
+  return;
+}
+
+void ImpTypeChecker::visit(DoWhileStatement* s) {
+  s->body->accept(this);
+  if (!s->cond->accept(this).match(booltype)) {
+    cout << "Conditional in DoWhileStm must be: " << booltype << endl;
+    exit(0);
+  }
+  sp_decr(1);
+  return;
 }
 
 ImpType ImpTypeChecker::visit(BinaryExp* e) {
   ImpType t1 = e->left->accept(this);
   ImpType t2 = e->right->accept(this);
   if (t1.ttype != t2.ttype) {
-    cout << "The operation " << e->op << " has incorrect arguments\n";
+    cout << "The operation " << e->op << " has arguments of different types\n";
     exit(0);
   }
   ImpType result;

@@ -101,6 +101,7 @@ AssignStatement::AssignStatement(string id, Exp* e):id(id), rhs(e) { }
 PrintStatement::PrintStatement(Exp* e):e(e) { }
 IfStatement::IfStatement(Exp* c,Body *tb, Body* fb):cond(c),tbody(tb), fbody(fb) { }
 WhileStatement::WhileStatement(Exp* c,Body *b):cond(c),body(b) { }
+DoWhileStatement::DoWhileStatement(Exp* c, Body* b):cond(c), body(b) {}
 StatementList::StatementList():slist() {}
 VarDec::VarDec(string type, list<string> vars):type(type), vars(vars) {}
 VarDecList::VarDecList():vdlist() {}
@@ -113,6 +114,7 @@ AssignStatement::~AssignStatement() { delete rhs; }
 PrintStatement::~PrintStatement() { delete e; }
 IfStatement::~IfStatement() { delete fbody; delete tbody; delete cond; }
 WhileStatement::~WhileStatement() { delete body; delete cond; }
+DoWhileStatement::~DoWhileStatement() { delete body; delete cond; }
 StatementList::~StatementList() { }
 VarDec::~VarDec() { }
 VarDecList::~VarDecList() { }
@@ -130,6 +132,9 @@ void IfStatement::accept(ImpGeneralVisitor* v) {
   return v->visit(this);
 }
 void WhileStatement::accept(ImpGeneralVisitor* v) {
+  return v->visit(this);
+}
+void DoWhileStatement::accept(ImpGeneralVisitor* v) {
   return v->visit(this);
 }
 void StatementList::add(Stm* s) { slist.push_back(s);  }
@@ -163,6 +168,9 @@ void IfStatement::accept(ImpValueVisitor* v) {
 void WhileStatement::accept(ImpValueVisitor* v) {
   return v->visit(this);
 }
+void DoWhileStatement::accept(ImpValueVisitor* v) {
+  return v->visit(this);
+}
 void StatementList::accept(ImpValueVisitor* v) {
   return v->visit(this);
 }
@@ -190,6 +198,9 @@ void IfStatement::accept(ImpTypeVisitor* v) {
   return v->visit(this);
 }
 void WhileStatement::accept(ImpTypeVisitor* v) {
+  return v->visit(this);
+}
+void DoWhileStatement::accept(ImpTypeVisitor* v) {
   return v->visit(this);
 }
 void StatementList::accept(ImpTypeVisitor* v) {

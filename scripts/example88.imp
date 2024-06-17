@@ -1,0 +1,8 @@
+var int x,y;
+var bool z;
+x = 12;
+y = 5;
+z = x < y; // dasdasd
+print(ifexp(z,100,200)+2); // adasda
+y = y - 1;
+print(y)

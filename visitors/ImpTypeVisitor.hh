@@ -14,6 +14,7 @@ public:
   virtual void visit(PrintStatement* s) = 0;
   virtual void visit(IfStatement* s) = 0;
   virtual void visit(WhileStatement* s) = 0;
+  virtual void visit(DoWhileStatement* s) = 0;
   
   virtual ImpType visit(BinaryExp* e) = 0;
   virtual ImpType visit(NumberExp* e) = 0;

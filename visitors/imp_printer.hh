@@ -16,6 +16,7 @@ public:
   void visit(PrintStatement* s);
   void visit(IfStatement* s);
   void visit(WhileStatement* s);
+  void visit(DoWhileStatement* s);
   
   int visit(BinaryExp* e);
   int visit(NumberExp* e);

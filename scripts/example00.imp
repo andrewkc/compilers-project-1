@@ -1,6 +1,6 @@
 var int x, n;
-n = 10;
-x = 0;
+n = 10; // x = 10
+x = 0; // Un comentario
 if x < n then 
 var bool a, b, x;
 print(a)

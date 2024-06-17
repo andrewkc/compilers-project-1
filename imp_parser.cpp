@@ -1,9 +1,9 @@
 #include "imp_parser.hh"
 
-const char* Token::token_names[31] = {
+const char* Token::token_names[32] = {
   "LPAREN" , "RPAREN", "PLUS", "MINUS", "MULT","DIV","EXP","LT","LTEQ","EQ",
   "NUM", "ID", "PRINT", "SEMICOLON", "COMMA", "ASSIGN", "CONDEXP", "IF", "THEN", "ELSE", "ENDIF", "WHILE", "DO",
-  "ENDWHILE", "ERR", "END", "VAR", "TRUE", "FALSE", "AND", "OR" };
+  "ENDWHILE", "ERR", "END", "VAR", "TRUE", "FALSE", "AND", "OR", "COMMENT" };
 
 Token::Token(Type type):type(type) { lexema = ""; }
 
@@ -73,7 +73,20 @@ Token* Scanner::nextToken() {
       if (c == '*') token = new Token(Token::EXP);
       else { rollBack(); token = new Token(Token::MULT); }
       break;     
-    case '/': token = new Token(Token::DIV); break;
+    case '/': 
+      c = nextChar();
+      if (c == '/') {
+        c = nextChar();
+        while (c != '\0' && c != '\n') {
+          c = nextChar();
+        }
+        rollBack();
+        token = new Token(Token::COMMENT, getLexema());
+      } else {
+        rollBack();
+        token = new Token(Token::DIV);
+      }
+      break;
     case ';': token = new Token(Token::SEMICOLON); break;
     case ',': token = new Token(Token::COMMA); break;
     case '=': token = new Token(Token::ASSIGN); break;
@@ -146,6 +159,7 @@ bool Parser::advance() {
     previous = temp;
     if (check(Token::ERR)) {
       cout << "Parse error, unrecognised character: " << current->lexema << endl;
+      cout << "................\n";//
       exit(0);
     }
     return true;
@@ -208,6 +222,9 @@ VarDec* Parser::parseVarDec() {
       var = previous->lexema;
       vars.push_back(var);
     }
+    if (match(Token::COMMENT)) {
+      // do nothing
+    }
     if (!match(Token::SEMICOLON)) parserError("Expecting semicolon at end of var declaration");
     vd = new VarDec(type,vars);
   }
@@ -229,7 +246,13 @@ StatementList* Parser::parseStatementList() {
   StatementList* p = new StatementList();
   p->add(parseStatement());
   while(match(Token::SEMICOLON)) {
+    while (match(Token::COMMENT)) {
+      // do nothing
+    }
     p->add(parseStatement());
+  }
+  while (match(Token::COMMENT)) {
+    // do nothing
   }
   return p;
 }
@@ -245,7 +268,6 @@ Stm* Parser::parseStatement() {
       exit(0);
     }
     s = new AssignStatement(lex, parseBExp());
-    // memory_update(lex, v);
   } else if (match(Token::PRINT)) {
     if (!match(Token::LPAREN)) {
       cout << "Error: expected ( " << endl;
@@ -277,7 +299,17 @@ Stm* Parser::parseStatement() {
     if (!match(Token::ENDWHILE))
 	parserError("Expected 'endwhile'");
     s = new WhileStatement(e,tb);
-  } else {
+  } else if (match(Token::DO)) {
+    tb = parseBody();
+    if (!match(Token::WHILE))
+      parserError("Expected 'while'");
+    e = parseBExp();
+    s = new DoWhileStatement(e,tb);
+  } else if (match(Token::COMMENT)) {
+    // move to the end and if it is a line break
+    cout << previous->lexema << endl;
+  } 
+  else {
     cout << "Statement not found" << endl;
     exit(0);
   }

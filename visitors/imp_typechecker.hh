@@ -33,6 +33,7 @@ public:
   void visit(PrintStatement* s);
   void visit(IfStatement* s);
   void visit(WhileStatement* s);
+  void visit(DoWhileStatement* s);
   
   ImpType visit(BinaryExp* e);
   ImpType visit(NumberExp* e);
