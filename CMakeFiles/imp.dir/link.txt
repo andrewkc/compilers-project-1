@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/imp.dir/tests/imp_test.cpp.o CMakeFiles/imp.dir/imp_ast.cpp.o CMakeFiles/imp.dir/imp_parser.cpp.o CMakeFiles/imp.dir/utils/imp_value.cpp.o CMakeFiles/imp.dir/visitors/imp_printer.cpp.o CMakeFiles/imp.dir/visitors/imp_interpreter.cpp.o -o imp 
