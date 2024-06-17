@@ -6,6 +6,19 @@
 
 En este documento veremos los avances que se nos han pedido para el proyecto 1
 
+## 0. Run Program:
+```
+git clone https://github.com/andrewkc/compilers-project-1.git
+cd compilers-project-1
+cmake .
+make
+```
+Ejemplo de uso:
+```
+./compiler scripts/example00.imp
+./svm scripts/example00.imp.svm
+./imp scripts/example11.imp
+```
 ## 1. Verificador de tipos (typechecker) y Generador de código (codegenerator)
 ***REPORTE** ¿Cómo se calculó la memoria necesaria para las variables globales?* 
 **Modificaciones de código:**
@@ -281,17 +294,4 @@ codegen(add, bd(vdlist, Stm_1...Stm_n) = codegen(addr, Stm_1)
                                          ...
                                          codegen(addr, Stm_n)
 codegen(add, e) // base case
-```
-## 4. Run Program:
-```
-git clone https://github.com/andrewkc/compilers-project-1.git
-cd compilers-project-1
-cmake .
-make
-```
-Ejemplo de uso:
-```
-./compiler scripts/example00.imp
-./svm scripts/example00.imp.svm
-./imp scripts/example11.imp
 ```
