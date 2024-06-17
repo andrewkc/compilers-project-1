@@ -258,7 +258,7 @@ public:
   ~DoWhileStatement();
 };
 ```
-**Definciones:**
+**Definiciones:**
 * Tcheck
 ```
 tcheck(env, DoWhileStm(e, bd)) ifi tcheck(env, bd) &&
